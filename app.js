@@ -52,6 +52,19 @@ addBtn.addEventListener("click", () => {
         todoUl.appendChild(li)
     }
 
+    //! UI selementinin cocuklarından herhangi birisinden bir event gelirse bunu tespit et ve gerekeni yap (Capturing)
+    todoUl.addEventListener('click', (e) =>{
+        console.log(e.target);
+        //! event bir delete butonundan geldi ise
+        if(e.target.classList.contains("fa-trash")){
+            e.target.parentElement.remove()
+        }else if(e.target.classList.contains("fa-check")){
+            //! event bir okey butonundan geldi ise
+            //? ilgili li elementinde checked adında bir classı varsa bunusil aksi takdirde ekle(DOM)
+           e.target.parentElement.classList.toggle("checked")
+        }
+    })
+
     //? Enter tusu ile ekleme mümkün olsun
     todoInput.addEventListener("keydown", (e) => {
         if (e.code === "Enter"){
