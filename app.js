@@ -16,6 +16,13 @@ addBtn.addEventListener("click", () => {
         completed:false,
         text:todoInput.value,
     }
+    createListElement(newTodo)
     }
-    
 })
+
+    const createListElement = (newTodo) => {
+        const li = document.createElement("li")
+        /* li.id = newTodo.id */
+        li.setAttribute("id", newTodo.id)
+        console.log(li);
+    }
