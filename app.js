@@ -7,6 +7,17 @@ const addBtn = document.getElementById("todo-button")
 const todoInput = document.getElementById("todo-input")
 const todoUl = document.getElementById("todo-ul")
 
+let todos = JSON.parse(localStorage.getItem("TODOS")) || []
+console.log(todos);
+
+const renderSavedTodos = () =>{
+todos.forEach ((todo) =>{
+    createListElement(todo)
+})
+}
+
+renderSavedTodos()
+
 addBtn.addEventListener("click", () => {
     if(todoInput.value.trim() === ""){
         alert("Please enter new todo")
@@ -16,13 +27,22 @@ addBtn.addEventListener("click", () => {
         completed:false,
         text:todoInput.value,
     }
+
+    //! Yeni bir li elementi oluşturup bunu DOM a bas
     createListElement(newTodo)
+
+    //? Yeni oluşturulan todo' yu diziye sakla
+    todos.push(newTodo)
+
+
+    localStorage.setItem("TODOS", JSON.stringify(todos))
+    console.log(todos);
     todoInput.value = ""
     }
 })
 
-    const createListElement = (newTodo) => {
-        const {id, completed, text} = newTodo
+    function createListElement(newTodo) {
+        const {id, completed, text} = newTodo //! Destr.
          //? yeni bir li elementi olustur ve bu elemente obje icerisindeki
         //? id degerini ve completed class'ini ata
         const li = document.createElement("li")
