@@ -110,11 +110,11 @@
     padding: 0.4rem;
   }
   
-  li.completed .fa-check {
+  li.checked .fa-check {
     color: #00e676;
   }
   
-  li.completed p {
+  li.checked p {
     color: rgb(41, 41, 41);
     text-decoration: line-through;
     font-weight: normal;
