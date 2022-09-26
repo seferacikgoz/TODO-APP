@@ -13,7 +13,7 @@ addBtn.addEventListener("click", () => {
     }else {
     const newTodo = {
         id: new Date().getTime(),
-        completed:true,
+        completed:false,
         text:todoInput.value,
     }
     createListElement(newTodo)
@@ -22,14 +22,15 @@ addBtn.addEventListener("click", () => {
 })
 
     const createListElement = (newTodo) => {
+        const {id, completed, text} = newTodo
          //? yeni bir li elementi olustur ve bu elemente obje icerisindeki
         //? id degerini ve completed class'ini ata
         const li = document.createElement("li")
         /* li.id = newTodo.id */
-        li.setAttribute("id", newTodo.id)
+        li.setAttribute("id", id)
 
        /*  newTodo.completed ? li.classList.add("completed") : "" */
-       newTodo.completed && li.classList.add("checked")
+      completed && li.classList.add("checked")
        
         //? okey ikonu olustur ve li elementine bagla
         const okIcon = document.createElement("i")
@@ -51,12 +52,14 @@ addBtn.addEventListener("click", () => {
         todoUl.appendChild(li)
     }
 
+    //? Enter tusu ile ekleme mümkün olsun
     todoInput.addEventListener("keydown", (e) => {
         if (e.code === "Enter"){
             addBtn.click()
         }
     })
 
+    //? Baslangıcta input aktif olsun
     window.onload = function () {
         todoInput.focus()
     }
