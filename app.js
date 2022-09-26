@@ -89,8 +89,18 @@ addBtn.addEventListener("click", () => {
             //! event bir okey butonundan geldi ise
             //? ilgili li elementinde checked adında bir classı varsa bunusil aksi takdirde ekle(DOM)
            e.target.parentElement.classList.toggle("checked")
+        //! todos dizisindeki ilgili elementin completed kismini guncelle
+    todos.map((todo, index) => {
+        if (todo.id == id) {
+          todos[index].completed = !todos[index].completed;
         }
-    })
+      });
+      console.log(todos);
+  
+      //? todos dizisinin son halini localStorage'e sakla
+      localStorage.setItem("TODOS", JSON.stringify(todos));
+    }
+  });
 
     //? Enter tusu ile ekleme mümkün olsun
     todoInput.addEventListener("keydown", (e) => {
