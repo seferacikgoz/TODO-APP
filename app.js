@@ -75,9 +75,14 @@ addBtn.addEventListener("click", () => {
     //! UI selementinin cocuklarından herhangi birisinden bir event gelirse bunu tespit et ve gerekeni yap (Capturing)
     todoUl.addEventListener('click', (e) =>{
         console.log(e.target);
+
+        const id = e.target.parentElement.getAttribute("id")
         //! event bir delete butonundan geldi ise
         if(e.target.classList.contains("fa-trash")){
-            e.target.parentElement.remove()
+            //? delete butonunun parentini DOM dan sil 
+           e.target.parentElement.remove()
+
+        todos = todos.filter((todo) => todo.id !== id )
         }else if(e.target.classList.contains("fa-check")){
             //! event bir okey butonundan geldi ise
             //? ilgili li elementinde checked adında bir classı varsa bunusil aksi takdirde ekle(DOM)
