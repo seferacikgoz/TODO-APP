@@ -82,7 +82,9 @@ addBtn.addEventListener("click", () => {
             //? delete butonunun parentini DOM dan sil 
            e.target.parentElement.remove()
 
-        todos = todos.filter((todo) => todo.id !== id )
+        //? dizinin ilgili elementini sil
+        todos = todos.filter((todo) => todo.id !== Number(id))
+        localStorage.setItem("TODOS", JSON.stringify(todos))
         }else if(e.target.classList.contains("fa-check")){
             //! event bir okey butonundan geldi ise
             //? ilgili li elementinde checked adında bir classı varsa bunusil aksi takdirde ekle(DOM)
